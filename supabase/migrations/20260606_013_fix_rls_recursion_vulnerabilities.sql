@@ -130,7 +130,7 @@ DROP POLICY IF EXISTS "students_write_superadmin_only" ON students;
 DROP POLICY IF EXISTS "students_read_authorized" ON students;
 CREATE POLICY "students_read_authorized" ON students
   FOR SELECT
-  TO authenticated````
+  TO authenticated
   USING (
     ((auth.jwt()::jsonb -> 'user_metadata' ->> 'role') = 'superadmin')
     OR
